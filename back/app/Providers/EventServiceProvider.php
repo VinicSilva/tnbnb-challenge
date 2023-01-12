@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Checks;
+use App\Models\Purchases;
+use App\Models\User;
+use App\Observers\CheckObserver;
+use App\Observers\PurchaseObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,7 +33,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::observe(UserObserver::class);
+        Checks::observe(CheckObserver::class);
+        Purchases::observe(PurchaseObserver::class);
     }
 
     /**
