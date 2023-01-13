@@ -6,7 +6,7 @@
     flat
     v-bind="$attrs"
     icon="mdi-dots-vertical"
-    class="bi-dropdown-actions"
+    class="bank-dropdown-actions"
   >
     <q-list>
       <slot name="btn-before-edit" />
@@ -50,7 +50,7 @@ import { useTranslate } from 'src/composable/translate';
 import { defineComponent, computed } from 'vue';
 
 export default defineComponent({
-  name: 'BiDropdownActions',
+  name: 'BankDropdownActions',
   props: {
     hiddenRemove: {
       type: Boolean,
@@ -86,7 +86,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.bi-dropdown-actions {
+.bank-dropdown-actions {
   border-radius: 50px;
   .q-btn-dropdown__arrow {
     display: none $i;

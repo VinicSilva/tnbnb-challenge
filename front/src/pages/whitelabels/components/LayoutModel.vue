@@ -8,8 +8,8 @@
           :title="themeName"
           v-text="themeName"
         ></b>
-        <bi-dropdown-actions @edit="$emit('edit')" @remove="$emit('remove')">
-        </bi-dropdown-actions>
+        <bank-dropdown-actions @edit="$emit('edit')" @remove="$emit('remove')">
+        </bank-dropdown-actions>
       </div>
     </q-card-section>
     <q-card-section class="q-pa-sm">
