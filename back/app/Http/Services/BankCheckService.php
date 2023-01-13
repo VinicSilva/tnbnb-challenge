@@ -3,11 +3,19 @@
 namespace App\Http\Services;
 
 use App\Models\BankCheck;
+use App\Repositories\Contracts\BankCheckRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class BankCheckService {
+
+    protected BankCheckRepositoryInterface $bankCheckRepository;
+
+    public function __construct(BankCheckRepositoryInterface $bankCheckRepository)
+    {
+        $this->bankCheckRepository = $bankCheckRepository;
+    }
 
     public function get(string $status, int $userId = null) {
         try {
@@ -25,13 +33,13 @@ class BankCheckService {
     public function changeStatus(int $bankCheckId, string $status) {
         try {
             DB::beginTransaction();
-            $findBankCheck = BankCheck::find($bankCheckId);
+            $findBankCheck = $this->bankCheckRepository->findOne($bankCheckId);
             if (!$findBankCheck) {
                 return response()->json([
                     'message' => 'bank_check_not_found'
                 ], 404);
             }
-            $findBankCheck->update(['status' => $status]);
+            $this->bankCheckRepository->update($findBankCheck, ['status' => $status]);
             DB::commit();
             return response()->json([
                 'message' => 'success_update_bank_check_status'
@@ -49,7 +57,7 @@ class BankCheckService {
         try {
             DB::beginTransaction();
             $bankCheck['value'] = formatPriceToSaveInDb($bankCheck['value']);
-            BankCheck::create($bankCheck);
+            $this->bankCheckRepository->store($bankCheck);
             DB::commit();
             return response()->json([
                 'message' => 'success_register_bank_check'
