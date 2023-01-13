@@ -20,7 +20,7 @@ import { useTranslate } from 'src/composable/translate';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'BiModalFooter',
+  name: 'BankModalFooter',
   setup() {
     const { translate } = useTranslate();
     return { translate };

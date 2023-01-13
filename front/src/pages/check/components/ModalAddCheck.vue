@@ -1,5 +1,5 @@
 <template>
-  <bi-modal
+  <bank-modal
     v-model="openModal"
     :loading="loading"
   >
@@ -59,12 +59,12 @@
       </q-form>
     </template>
     <template v-slot:actions>
-      <bi-modal-footer
+      <bank-modal-footer
         @save="handleDomain"
         @close="openModal = false"
-      ></bi-modal-footer>
+      ></bank-modal-footer>
     </template>
-  </bi-modal>
+  </bank-modal>
 </template>
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs, ref, watch } from 'vue';

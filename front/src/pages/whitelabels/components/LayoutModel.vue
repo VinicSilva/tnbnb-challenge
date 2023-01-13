@@ -13,7 +13,7 @@
       </div>
     </q-card-section>
     <q-card-section class="q-pa-sm">
-      <q-card flat class="bi-layout">
+      <q-card flat class="bank-layout">
         <div class="rounded-borders overflow-hidden">
           <div class="row">
             <div class="col-12 header" :style="{ background: colorHeader }">
@@ -145,7 +145,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .card-layout {
   border: 1px solid #e4e4e4;
-  .bi-layout {
+  .bank-layout {
     border: 1px solid #e4e4e4;
     border-radius: 4px;
     .header {

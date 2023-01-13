@@ -49,7 +49,7 @@ interface iTabs {
 }
 
 export default defineComponent({
-  name: 'BiTabs',
+  name: 'BankTabs',
   props: {
     modelValue: {
       type: String,

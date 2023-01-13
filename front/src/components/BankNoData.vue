@@ -1,5 +1,5 @@
 <template>
-  <div class="row full-width bi-no-data items-center no-padding">
+  <div class="row full-width bank-no-data items-center no-padding">
     <div class="col-12">
       <div class="flex items-center justify-center">
         <q-icon name="mdi-information" size="50px"></q-icon>
@@ -15,7 +15,7 @@ import { defineComponent } from 'vue';
 import { useTranslate } from 'src/composable/translate';
 
 export default defineComponent({
-  name: 'BiNoData',
+  name: 'BankNoData',
   setup() {
     const { translate } = useTranslate();
     return {
@@ -25,7 +25,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.bi-no-data {
+.bank-no-data {
   min-height: 200px;
   color: #4c4c4c;
 }

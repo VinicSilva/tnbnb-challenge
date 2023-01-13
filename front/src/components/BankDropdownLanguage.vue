@@ -7,7 +7,7 @@
     :dropdown-icon="undefined"
     content-class="no-border-radius no-shadow"
     content-style="border:1px solid #e4e4e4"
-    class="q-mr-sm bi-language no-border-radius"
+    class="q-mr-sm bank-language no-border-radius"
   >
     <template v-slot:label>
       <div>
@@ -74,7 +74,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.bi-language {
+.bank-language {
   height: 55px;
   .q-btn-dropdown__arrow {
     margin-left: 0 $i;

@@ -23,7 +23,7 @@ export function useRules() {
       language: _DEFAULT(translate.value.language),
       subdomain: _DEFAULT(translate.value.subdomain),
       situation: _DEFAULT(translate.value.situation),
-      bi: _DEFAULT('Autenticação Power BI'),
+      bi: _DEFAULT('Autenticação Power Bank'),
       buttons: _DEFAULT('Botões'),
       rules: _DEFAULT(translate.value.rules),
       user: _DEFAULT(translate.value.user),

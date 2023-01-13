@@ -1,5 +1,5 @@
 <template>
-  <bi-modal
+  <bank-modal
     v-model="model"
     :modal-content="{ padding: 0 }"
     width="800px"
@@ -13,7 +13,7 @@
       <div class="row q-col-gutter-y-sm">
         <div class="col-12">
           <q-form ref="formRef">
-            <bi-tabs
+            <bank-tabs
               v-model="tab"
               vertical
               class-tab-panel="no-padding"
@@ -51,15 +51,15 @@
               <template v-slot:login>
                 <tab-login />
               </template>
-            </bi-tabs>
+            </bank-tabs>
           </q-form>
         </div>
       </div>
     </template>
     <template v-slot:actions>
-      <bi-modal-footer @save="handleWhitelabel" />
+      <bank-modal-footer @save="handleWhitelabel" />
     </template>
-  </bi-modal>
+  </bank-modal>
 </template>
 <script lang="ts">
 import { useWhitelabelStore } from 'src/stores/whitelabel/whitelabel';

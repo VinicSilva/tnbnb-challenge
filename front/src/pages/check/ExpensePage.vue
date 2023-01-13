@@ -5,14 +5,14 @@
     </div>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-12">
-        <bi-table
+        <bank-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :grid="true"
           :rows="dataTableExpenses"
           selection="none"
         >
           <template v-slot:top>
-            <bi-search
+            <bank-search
               hidden-remove
               @add="openModal"
               style="top: 10px"
@@ -23,7 +23,7 @@
               <template #title>
                 <b>Expenses >></b>
               </template>
-            </bi-search>
+            </bank-search>
           </template>
           <template v-slot:item="{ props }">
             <div class="col-md-3 col-xs-12 col-sm-6">
@@ -31,9 +31,9 @@
             </div>
           </template>
           <template v-slot:bottom>
-            <bi-pagination />
+            <bank-pagination />
           </template>
-        </bi-table>
+        </bank-table>
       </div>
     </div>
     <modal-add-expense />

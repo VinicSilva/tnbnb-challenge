@@ -13,14 +13,14 @@
       </div>
 
       <div class="col-12">
-        <bi-table
+        <bank-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :grid="true"
           :rows="dataTableTransactions"
           selection="none"
         >
           <template v-slot:top>
-            <bi-search
+            <bank-search
               hidden-add
               hidden-remove
               style="top: 10px"
@@ -31,7 +31,7 @@
               <template #title>
                 <b>{{ translate.transactions }}</b>
               </template>
-            </bi-search>
+            </bank-search>
           </template>
           <template v-slot:item="{ props }">
             <div class="col-md-3 col-xs-12 col-sm-6">
@@ -39,13 +39,13 @@
             </div>
           </template>
           <template v-slot:bottom>
-            <bi-pagination 
+            <bank-pagination 
               :pagination="pagination"
               v-model="pagination.current_page"
               @request="requestPagination"
             />
           </template>
-        </bi-table>
+        </bank-table>
       </div>
     </div>
   </q-page>

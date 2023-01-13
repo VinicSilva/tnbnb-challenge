@@ -2,7 +2,7 @@
   <div class="row full-width justify-center items-center">
     <q-pagination
       color="grey-8"
-      class="bi-pagination"
+      class="bank-pagination"
       v-bind="$attrs"
       v-model="model"
       direction-links
@@ -23,7 +23,7 @@
 import { defineComponent, computed } from 'vue';
 
 export default defineComponent({
-  name: 'BiPagination',
+  name: 'BankPagination',
   emits: ['request', 'update:modelValue'],
   props: {
     maxPages: {
@@ -59,7 +59,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.bi-pagination {
+.bank-pagination {
   .q-btn--actionable {
     border-radius: 50px;
   }

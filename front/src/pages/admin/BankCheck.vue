@@ -5,7 +5,7 @@
     </div>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-12">
-        <bi-table
+        <bank-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :columns="columns"
           :rows="data"
@@ -36,16 +36,16 @@
             </q-td>
           </template>
           <template v-slot:no-data>
-            <bi-no-data />
+            <bank-no-data />
           </template>
           <template v-slot:bottom>
-            <bi-pagination
+            <bank-pagination
               :pagination="pagination"
               v-model="pagination.current_page"
               @request="requestPagination"
             />
           </template>
-        </bi-table>
+        </bank-table>
       </div>
     </div>
   </q-page>
