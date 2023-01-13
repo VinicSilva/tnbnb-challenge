@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
-            $table->integer('income_value');
-            $table->integer('expense_value');
+            $table->integer('income_value')->default(0);
+            $table->integer('expense_value')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

@@ -25,8 +25,6 @@ class BalanceService {
             DB::beginTransaction();
             $balanceUserId = $userId ?? auth('api')->user()->id;
             Balance::create([
-                'income_value' => 0,
-                'expense_value' => 0,
                 'user_id' => $balanceUserId,
             ]);
             DB::commit();
@@ -39,7 +37,6 @@ class BalanceService {
     public function changeIncomeValue(int $userId, int $incomeValue) {
         try {
             DB::beginTransaction();
-            Balance::where('user_id', $userId)->update(['income_value' => $incomeValue]);
             $findBalance = Balance::where('user_id', $userId)->first();
             if (!$findBalance) {
                 return response()->json([

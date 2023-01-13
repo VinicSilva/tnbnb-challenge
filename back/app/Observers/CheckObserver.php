@@ -28,7 +28,7 @@ class CheckObserver
      */
     public function created(Checks $checks)
     {
-        Log::info('cuida');
+        //
     }
 
     /**
@@ -39,7 +39,6 @@ class CheckObserver
      */
     public function updated(Checks $checks)
     {
-        Log::info('UPDATED');
         if ($checks->status === Checks::ACCEPTED) {
             try {
                 $this->balanceService->changeIncomeValue($checks->user_id, $checks->value);

@@ -56,7 +56,7 @@ export const useUsersStore = defineStore('users', {
       await requestRegisterUser(params)
         .then(({ }) => {
           notification.success();
-          window.location.href = '/signin';
+          setTimeout(() => window.location.href = '/signin', 1000)
         })
         .finally(() => {
           this.loading = false;
