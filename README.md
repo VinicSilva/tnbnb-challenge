@@ -54,6 +54,12 @@ docker-compose up -d
 // You can access the api in: http://localhost:80
 ```
 
+# Credentials to sign in of Administrator:
+
+```bash
+email: admin@bnb.com
+password: 123456
+```
 
 # Points of system
 
