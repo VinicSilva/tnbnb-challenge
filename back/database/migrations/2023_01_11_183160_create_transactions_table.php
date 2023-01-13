@@ -25,7 +25,7 @@ return new class extends Migration
 
         Schema::table('transactions', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('check_id')->references('id')->on('checks');
+            $table->foreign('check_id')->references('id')->on('bank_checks');
             $table->foreign('purchase_id')->references('id')->on('purchases');
         });
     }

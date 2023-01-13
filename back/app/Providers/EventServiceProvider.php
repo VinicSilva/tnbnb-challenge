@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Checks;
-use App\Models\Purchases;
+use App\Models\BankCheck;
+use App\Models\Purchase;
 use App\Models\User;
-use App\Observers\CheckObserver;
+use App\Observers\BankCheckObserver;
 use App\Observers\PurchaseObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
@@ -34,8 +34,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
-        Checks::observe(CheckObserver::class);
-        Purchases::observe(PurchaseObserver::class);
+        BankCheck::observe(BankCheckObserver::class);
+        Purchase::observe(PurchaseObserver::class);
     }
 
     /**

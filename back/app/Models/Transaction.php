@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transactions extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
@@ -20,10 +20,8 @@ class Transactions extends Model
         'purchase_id',
     ];
 
-    protected $table = 'transactions';
-
     public function purchase() {
-        return $this->hasOne(Purchases::class, 'id', 'purchase_id');
+        return $this->hasOne(Purchase::class, 'id', 'purchase_id');
     }
 
     public function user() {
@@ -31,6 +29,6 @@ class Transactions extends Model
     }
 
     public function check() {
-        return $this->hasOne(Checks::class,'id', 'check_id');
+        return $this->hasOne(BackCheck::class,'id', 'check_id');
     }
 }

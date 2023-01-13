@@ -4,8 +4,8 @@ namespace App\Observers;
 
 use App\Http\Services\BalanceService;
 use App\Http\Services\TransactionService;
-use App\Models\Purchases;
-use App\Models\Transactions;
+use App\Models\Purchase;
+use App\Models\Transaction;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -21,61 +21,61 @@ class PurchaseObserver
     }
     
     /**
-     * Handle the Purchases "created" event.
+     * Handle the Purchase "created" event.
      *
-     * @param  \App\Models\Purchases  $purchases
+     * @param  \App\Models\Purchase  $purchase
      * @return void
      */
-    public function created(Purchases $purchases)
+    public function created(Purchase $purchase)
     {
         try {
-            $this->balanceService->changeExpenseValue($purchases->user_id, $purchases->value);
-            $this->transactionService->register($purchases->user_id, $purchases->value, Transactions::EXPENSE, null, $purchases->id);
+            $this->balanceService->changeExpenseValue($purchase->user_id, $purchase->value);
+            $this->transactionService->register($purchase->user_id, $purchase->value, Transaction::EXPENSE, null, $purchase->id);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
     }
 
     /**
-     * Handle the Purchases "updated" event.
+     * Handle the Purchase "updated" event.
      *
-     * @param  \App\Models\Purchases  $purchases
+     * @param  \App\Models\Purchase  $purchase
      * @return void
      */
-    public function updated(Purchases $purchases)
+    public function updated(Purchase $purchase)
     {
         //
     }
 
     /**
-     * Handle the Purchases "deleted" event.
+     * Handle the Purchase "deleted" event.
      *
-     * @param  \App\Models\Purchases  $purchases
+     * @param  \App\Models\Purchase  $purchase
      * @return void
      */
-    public function deleted(Purchases $purchases)
+    public function deleted(Purchase $purchase)
     {
         //
     }
 
     /**
-     * Handle the Purchases "restored" event.
+     * Handle the Purchase "restored" event.
      *
-     * @param  \App\Models\Purchases  $purchases
+     * @param  \App\Models\Purchase  $purchase
      * @return void
      */
-    public function restored(Purchases $purchases)
+    public function restored(Purchase $purchase)
     {
         //
     }
 
     /**
-     * Handle the Purchases "force deleted" event.
+     * Handle the Purchase "force deleted" event.
      *
-     * @param  \App\Models\Purchases  $purchases
+     * @param  \App\Models\Purchase  $purchase
      * @return void
      */
-    public function forceDeleted(Purchases $purchases)
+    public function forceDeleted(Purchase $purchase)
     {
         //
     }

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\AdminChecksController;
+use App\Http\Controllers\Api\Admin\AdminBankCheckController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BalanceController;
-use App\Http\Controllers\Api\ChecksController;
+use App\Http\Controllers\Api\BankCheckController;
 use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +27,10 @@ Route::group([
 ], function () {
     Route::group([
         'middleware' => ['api.rule.admin'],
-        'prefix' => 'admin/checks'
+        'prefix' => 'admin/bank_checks'
     ], function () {
-        Route::get('/', [AdminChecksController::class, 'getPendings']);
-        Route::put('change/status/{id}', [AdminChecksController::class, 'changeStatus']);
+        Route::get('/', [AdminBankCheckController::class, 'getPendings']);
+        Route::put('change/status/{id}', [AdminBankCheckController::class, 'changeStatus']);
     });
 
     Route::group([
@@ -40,8 +40,8 @@ Route::group([
         Route::get('transactions', [TransactionController::class, 'getByUser']);
         Route::get('purchases', [PurchaseController::class, 'getByUser']);
         Route::post('purchase', [PurchaseController::class, 'register']);
-        Route::get('checks', [ChecksController::class, 'getByUser']); 
-        Route::post('check', [ChecksController::class, 'register']);        
+        Route::get('bank_checks', [BankCheckController::class, 'getByUser']); 
+        Route::post('bank_check', [BankCheckController::class, 'register']);        
     });
 
     

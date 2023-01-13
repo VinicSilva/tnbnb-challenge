@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\ChecksService;
-use App\Models\Checks;
+use App\Http\Services\BankCheckService;
+use App\Models\BankCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ChecksController extends Controller
+class BankCheckController extends Controller
 {
-    protected ChecksService $checksService;
+    protected BankCheckService $bankCheckService;
 
-    public function __construct(ChecksService $checksService)
+    public function __construct(BankCheckService $bankCheckService)
     {
-        $this->checksService = $checksService;
+        $this->bankCheckService = $bankCheckService;
     }
 
     public function getByUser(Request $request) {
         $status = $request->query('status');
         $userId = auth('api')->user()->id ?? null;
-    	return $this->checksService->get($status, $userId);
+    	return $this->bankCheckService->get($status, $userId);
     }
 
     public function register(Request $request) {
@@ -37,14 +37,14 @@ class ChecksController extends Controller
         }
 
         $image = $request->file('image')->store('image', 'public');
-        $checkData = array_merge(
+        $bankCheckData = array_merge(
             $validator->validated(),
             [
                 'image' => $image,
                 'user_id' => auth('api')->user()->id,
-                'status' => Checks::PENDING
+                'status' => BankCheck::PENDING
             ]
         );
-    	return $this->checksService->register($checkData);
+    	return $this->bankCheckService->register($bankCheckData);
     }
 }

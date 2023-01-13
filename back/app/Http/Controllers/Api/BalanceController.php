@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\BalanceService;
-use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {

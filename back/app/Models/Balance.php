@@ -14,8 +14,6 @@ class Balance extends Model
         'expense_value',
         'user_id',
     ];
-    
-    protected $table = 'balances';
 
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
