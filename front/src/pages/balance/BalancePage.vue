@@ -6,7 +6,7 @@
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div
         class="col-md-4 col-xs-12 col-sm-6"
-        v-for="(card, key) in listCardDashboard"
+        v-for="(card, key) in listCardBalance"
         :key="key"
       >
         <card-dashboard v-bind="card" />
@@ -90,7 +90,7 @@ export default defineComponent({
       return storeTransaction.pagination;
     });
 
-    const listCardDashboard = computed(() => {
+    const listCardBalance = computed(() => {
       return [
         {
           icon: 'mdi-wallet',
@@ -141,7 +141,7 @@ export default defineComponent({
 
     return {
       pagination,
-      listCardDashboard,
+      listCardBalance,
       requestPagination,
       dataTableTransactions,
       translate,

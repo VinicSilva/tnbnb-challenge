@@ -148,12 +148,10 @@ export default defineComponent({
     };
 
     const acceptCheck = async (props: any) => {
-      console.log('acceptCheck', props);
       await storeAdmin.REQUEST_CHANGE_STATUS_BANK_CHECK(props.checkId, 'accepted');
     };
 
     const rejectCheck = async (props: any) => {
-      console.log('rejectCheck', props);
       await storeAdmin.REQUEST_CHANGE_STATUS_BANK_CHECK(props.checkId, 'rejected');
     };
 

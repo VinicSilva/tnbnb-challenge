@@ -11,7 +11,6 @@ export function useAuth() {
 
   const isLoggedIn = computed(() => {
     const data = getUserCache();
-    console.log(data)
     return !!data?.token;
   });
 
