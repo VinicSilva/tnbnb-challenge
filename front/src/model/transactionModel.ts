@@ -15,7 +15,7 @@ export interface iTransaction {
   created_at: string | Date;
   user: iTransactionUser;
   purchase?: iPurchase;
-  check?: iCheck;
+  bank_check?: iBankCheck;
 }
 
 export interface iTransactionUser {
@@ -29,6 +29,6 @@ export interface iPurchase {
   description: string;
 }
 
-export interface iCheck {
+export interface iBankCheck {
   description: string;
 }

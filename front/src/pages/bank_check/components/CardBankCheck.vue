@@ -33,7 +33,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'CardCheck',
+  name: 'CardBankCheck',
   props: {
     description: {
       type: String,

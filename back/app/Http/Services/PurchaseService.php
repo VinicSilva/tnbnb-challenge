@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Models\Purchases;
+use App\Models\Purchase;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +12,7 @@ class PurchaseService {
     public function getByUser(int $userId = null) {
         try {
             $purchaseUserId = $userId ?? auth('api')->user()->id;
-            $purchases = Purchases::with('user')->where('user_id', $purchaseUserId)->orderBy('purchase_date', 'desc')->paginate();
+            $purchases = Purchase::with('user')->where('user_id', $purchaseUserId)->orderBy('purchase_date', 'desc')->paginate();
             return $purchases;
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -24,7 +24,7 @@ class PurchaseService {
         try {
             DB::beginTransaction();
             $purchase['value'] = formatPriceToSaveInDb($purchase['value']);
-            Purchases::create($purchase);
+            Purchase::create($purchase);
             DB::commit();
             return response()->json([
                 'message' => 'success_register_purchase'

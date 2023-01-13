@@ -69,7 +69,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, toRefs, ref, watch } from 'vue';
 import { useTranslate } from 'src/composable/translate';
-import { useCheckStore } from 'src/stores/checks/check';
+import { useBankCheckStore } from 'src/stores/bank_checks/bank_check';
 import { useRules } from 'src/composable/rules';
 import { configModalTitle } from 'src/utils';
 
@@ -79,7 +79,7 @@ export default defineComponent({
     const { translate } = useTranslate();
     const formRef = ref();
     const rules = useRules();
-    const storeCheck = useCheckStore();
+    const storeBankCheck = useBankCheckStore();
     const state = reactive({
       send: {
         description: '',
@@ -89,29 +89,29 @@ export default defineComponent({
     });
   
     const loading = computed(() => {
-      return storeCheck.loadingModal;
+      return storeBankCheck.loadingModal;
     });
 
     const modalTitle = computed(() => {
       return configModalTitle(null, {
         edit: 'edit',
-        add:  translate.value.add_check,
+        add:  translate.value.add_bank_check,
       });
     });
 
     const openModal = computed({
       get() {
-        return storeCheck.openModalCheck;
+        return storeBankCheck.openModalBankCheck;
       },
       set(value: boolean) {
-        storeCheck.OPEN_MODAL_CHECK(value);
+        storeBankCheck.OPEN_MODAL_BANK_CHECK(value);
       },
     });
 
     watch(
       () => openModal.value,
       (isOpen) => {
-        let formCheck: any = { ...storeCheck.$state.form };
+        let formCheck: any = { ...storeBankCheck.$state.form };
         state.send = formCheck;
         !isOpen && reset();
       }
@@ -120,13 +120,13 @@ export default defineComponent({
     const reset = () => {
       formRef.value.reset();
       openModal.value = false;
-      storeCheck.SET_FORM_CHECK();
+      storeBankCheck.SET_FORM_BANK_CHECK();
     };
 
     const handleDomain = () => {
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
-          await storeCheck.REQUEST_ADD_CHECK(state.send);
+          await storeBankCheck.REQUEST_ADD_BANK_CHECK(state.send);
           reset();
         }
       });

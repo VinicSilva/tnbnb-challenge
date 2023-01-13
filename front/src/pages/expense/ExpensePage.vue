@@ -79,7 +79,7 @@ export default defineComponent({
     };
 
     const dataTableExpenses = computed(() => {
-      return storeExpense.listExpenses.map((item) => {
+      return storeExpense.listExpenses?.map((item) => {
         return {
           date: dayjs(item.purchase_date).format('YYYY-MM-DD') ,
           description: item.description,

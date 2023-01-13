@@ -7,7 +7,7 @@ interface configMessage {
 }
 export function useNotification() {
   const { translate } = useTranslate();
-  const time = 10000;
+  const time = 5000;
   const success = (config: configMessage = {}) => {
     Notify.create({
       message: config?.message || translate.value.message.success,

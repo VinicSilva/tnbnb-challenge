@@ -21,12 +21,12 @@ export function useListAllMenu() {
           active: false,
           routename: 'expenses',
         },
-        checks: {
-          text: translate.value.check,
+        bank_checks: {
+          text: translate.value.bank_checks,
           icon: 'mdi-credit-card-scan',
-          to: '/checks',
+          to: '/bank_checks',
           active: false,
-          routename: 'checks',
+          routename: 'bank_checks',
         },
         admin_bank_checks: {
           text: translate.value.admin_bank_checks,
@@ -58,7 +58,7 @@ export function useMenuByUser() {
       customer: [
         up.value.balance,
         up.value.expenses,
-        up.value.checks,
+        up.value.bank_checks,
       ],
     };
   });

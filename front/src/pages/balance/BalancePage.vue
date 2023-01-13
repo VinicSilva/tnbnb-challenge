@@ -118,7 +118,7 @@ export default defineComponent({
     };
 
     const dataTableTransactions = computed(() => {
-      return storeTransaction.listTransactions.map((item) => {
+      return storeTransaction.listTransactions?.map((item) => {
         return {
           theme: {
             icon: item.type === 'income' ? 'mdi-arrow-top-right' : 'mdi-arrow-bottom-left',
@@ -128,7 +128,7 @@ export default defineComponent({
           date: dayjs(item.created_at).format('YYYY-MM-DD HH:mm:ss') ,
           description:
             item.type === 'income'
-              ? item.check?.description
+              ? item.bank_check?.description
               : item.purchase?.description,
           value: formatPrice(
             item.type === 'income' ? item.value : item.value * -1,

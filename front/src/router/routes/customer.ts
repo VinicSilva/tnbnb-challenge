@@ -14,10 +14,10 @@ const routeUser: RouteRecordRaw[] = [
     component: () => import('src/pages/expense/ExpensePage.vue'),
   },
   {
-    path: '/checks',
-    name: 'checks',
+    path: '/bank_checks',
+    name: 'bank_checks',
     meta: { auth: true },
-    component: () => import('src/pages/check/CheckPage.vue'),
+    component: () => import('src/pages/bank_check/BankCheckPage.vue'),
   }
 ];
 

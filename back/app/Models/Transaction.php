@@ -16,7 +16,7 @@ class Transaction extends Model
         'value',
         'user_id',
         'type',
-        'check_id',
+        'bank_check_id',
         'purchase_id',
     ];
 
@@ -28,7 +28,7 @@ class Transaction extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function check() {
-        return $this->hasOne(BackCheck::class,'id', 'check_id');
+    public function bank_check() {
+        return $this->hasOne(BankCheck::class,'id', 'bank_check_id');
     }
 }

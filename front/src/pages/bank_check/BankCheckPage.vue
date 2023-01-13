@@ -44,14 +44,14 @@
                       <bank-table
                         card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
                         :grid="true"
-                        :rows="dataTableChecks"
+                        :rows="dataTableBankChecks"
                         selection="none"
                       >
                         <template v-slot:top>
                         </template>
                         <template v-slot:item="{ props }">
                           <div class="col-md-3 col-xs-12 col-sm-6">
-                            <card-check v-bind="props" />
+                            <card-bank-check v-bind="props" />
                           </div>
                         </template>
                         <template v-slot:bottom>
@@ -72,27 +72,27 @@
       </div>
     </div>
     
-    <modal-add-check />
+    <modal-add-bank-check />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, toRefs, reactive, onMounted, watch } from 'vue';
 import { useTranslate } from 'src/composable/translate';
-import { useCheckStore } from 'src/stores/checks/check';
-import CardCheck from './components/CardCheck.vue';
+import { useBankCheckStore } from 'src/stores/bank_checks/bank_check';
+import CardBankCheck from './components/CardBankCheck.vue';
 import { useAuth } from 'src/composable/auth';
 import dayjs from 'dayjs';
 import { formatPrice } from 'src/utils';
-import ModalAddCheck from './components/ModalAddCheck.vue';
+import ModalAddBankCheck from './components/ModalAddBankCheck.vue';
 
 export default defineComponent({
-  name: 'Check',
-  components: { CardCheck, ModalAddCheck },
+  name: 'BankCheck',
+  components: { CardBankCheck, ModalAddBankCheck },
   setup() {
     const { getLanguage } = useAuth();
     const { translate } = useTranslate();
-    const storeCheck = useCheckStore();
+    const storeBankCheck = useBankCheckStore();
     const state = reactive({
       tab: translate.value.pending,
       tabs: [translate.value.pending, translate.value.accepted, translate.value.rejected],
@@ -102,25 +102,24 @@ export default defineComponent({
     watch(
       () => state.tab,
       async (tabItem) => {
-        await storeCheck.REQUEST_GET_CHECKS({ status: tabItem });
+        await storeBankCheck.REQUEST_GET_BANK_CHECKS({ status: tabItem });
       }
     );    
 
     const listBreadcrumbs = computed(() => {
-      return [{ label: translate.value.check, icon: 'mdi-credit-card-scan' }];
+      return [{ label: translate.value.bank_checks, icon: 'mdi-credit-card-scan' }];
     });
 
     onMounted(async () => {
-      // setar como pending a request 
-      await storeCheck.REQUEST_GET_CHECKS({ status: 'Pending' });
+      await storeBankCheck.REQUEST_GET_BANK_CHECKS({ status: 'Pending' });
     });
 
     const openModal = () => {
-      storeCheck.OPEN_MODAL_CHECK(true);
+      storeBankCheck.OPEN_MODAL_BANK_CHECK(true);
     };
 
-    const dataTableChecks = computed(() => {
-      return storeCheck.listChecks.map((item: any) => {
+    const dataTableBankChecks = computed(() => {
+      return storeBankCheck.listBankChecks?.map((item: any) => {
         return {
           date: dayjs(item.created_at).format('YYYY-MM-DD HH:mm:ss'),
           description: item.description,
@@ -132,17 +131,17 @@ export default defineComponent({
     });
 
     const pagination = computed(() => {
-      return storeCheck.pagination;
+      return storeBankCheck.pagination;
     });
 
     const requestPagination = async (page: number) => {
-      await storeCheck.REQUEST_GET_CHECKS({ page, status: state.tab });
+      await storeBankCheck.REQUEST_GET_BANK_CHECKS({ page, status: state.tab });
     };
 
     return {
       pagination,
       requestPagination,
-      dataTableChecks,
+      dataTableBankChecks,
       translate,
       listBreadcrumbs,
       openModal,

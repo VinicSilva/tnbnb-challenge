@@ -1,16 +1,16 @@
 import { useNotification } from 'src/composable/notification';
 import { configPagination } from 'src/utils/index';
 import { defineStore } from 'pinia';
-import checksService from 'src/service/checksService';
-import { iSearchUser, iStateCheck, iFormCheck } from 'src/model/checkModel';
-const { requestGetChecks, requestRegisterCheck } = checksService;
+import bankChecksService from 'src/service/bankChecksService';
+import { iSearchUser, iStateBankCheck, iFormBankCheck } from 'src/model/bankCheckModel';
+const { requestGetBankChecks, requestRegisterBankCheck } = bankChecksService;
 const { notification } = useNotification();
-export const useCheckStore = defineStore('check', {
-  state: (): iStateCheck => ({
+export const useBankCheckStore = defineStore('bank_check', {
+  state: (): iStateBankCheck => ({
     loadingTable: false,
     loadingModal: false,
-    openModalCheck: false,
-    listChecks: [],
+    openModalBankCheck: false,
+    listBankChecks: [],
     form: {
       value: '',
       description: '',
@@ -21,22 +21,22 @@ export const useCheckStore = defineStore('check', {
   }),
   getters: {},
   actions: {
-    OPEN_MODAL_CHECK(value: boolean) {
-      this.openModalCheck = value;
+    OPEN_MODAL_BANK_CHECK(value: boolean) {
+      this.openModalBankCheck = value;
     },
-    SET_FORM_CHECK(form: iFormCheck = {} as iFormCheck) {
+    SET_FORM_BANK_CHECK(form: iFormBankCheck = {} as iFormBankCheck) {
       this.form = {
         ...form,
       };
     },
-    async REQUEST_GET_CHECKS(params: iSearchUser = {}) {
-      params.status = this.CHECK_STATUS(params.status as string)
+    async REQUEST_GET_BANK_CHECKS(params: iSearchUser = {}) {
+      params.status = this.BANK_CHECK_STATUS(params.status as string)
       this.loadingTable = true;
       this.pagination = configPagination()
-      this.listChecks = []
-      await requestGetChecks(params)
+      this.listBankChecks = []
+      await requestGetBankChecks(params)
         .then(({ data }: any) => {
-          this.listChecks = data.data;
+          this.listBankChecks = data.data;
           this.pagination = configPagination(data);
         })
         .finally(() => {
@@ -46,12 +46,12 @@ export const useCheckStore = defineStore('check', {
           notification.error();
         });
     },
-    async REQUEST_ADD_CHECK(params: any) {
+    async REQUEST_ADD_BANK_CHECK(params: any) {
       this.loadingModal = true;
-      await requestRegisterCheck(params)
+      await requestRegisterBankCheck(params)
         .then(async ({}) => {
           notification.success();
-          await this.REQUEST_GET_CHECKS({ status: 'pending' });
+          await this.REQUEST_GET_BANK_CHECKS({ status: 'pending' });
         })
         .finally(() => {
           this.loadingModal = false;
@@ -60,7 +60,7 @@ export const useCheckStore = defineStore('check', {
           notification.error();
         });
     },
-    CHECK_STATUS(statusValue: string): string {
+    BANK_CHECK_STATUS(statusValue: string): string {
       statusValue = statusValue.toLowerCase()      
       const allStatus: any = {
         'aceito': 'accepted',

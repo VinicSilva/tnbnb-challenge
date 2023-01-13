@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Models\Transactions;
+use App\Models\Transaction;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +12,7 @@ class TransactionService {
     public function getByUser(int $userId = null) {
         try {
             $transactionUserId = $userId ?? auth('api')->user()->id;
-            $transactions = Transactions::with('user', 'purchase', 'check')->where('user_id', $transactionUserId)->orderBy('created_at', 'desc')->paginate();
+            $transactions = Transaction::with('user', 'purchase', 'bank_check')->where('user_id', $transactionUserId)->orderBy('created_at', 'desc')->paginate();
             return $transactions;
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -20,13 +20,13 @@ class TransactionService {
         }
     }
 
-    public function register(int $userId, int $value, string $type, $check_id = null, $purchase_id = null) {
+    public function register(int $userId, int $value, string $type, $bank_check_id = null, $purchase_id = null) {
         try {
             DB::beginTransaction();
-            Transactions::create([
+            Transaction::create([
                 'value' => $value,
                 'type' => $type,
-                'check_id' => $check_id,
+                'bank_check_id' => $bank_check_id,
                 'purchase_id' => $purchase_id,
                 'user_id' => $userId,
             ]);

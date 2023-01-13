@@ -111,13 +111,13 @@ export default defineComponent({
           align: 'left',
         },
         {
-          label: translate.value.check_value,
+          label: translate.value.value,
           field: 'value',
           name: 'value',
           align: 'center',
         },
         {
-          label: translate.value.check_image,
+          label: translate.value.bank_check_image,
           field: 'image',
           name: 'image',
           align: 'left',
@@ -132,7 +132,7 @@ export default defineComponent({
     });
 
     const data = computed(() => {
-      return storeAdmin.listPendingChecks.map((item) => {
+      return storeAdmin.listPendingChecks?.map((item) => {
         return {
           username: item.user.username,
           email: item.user.email,

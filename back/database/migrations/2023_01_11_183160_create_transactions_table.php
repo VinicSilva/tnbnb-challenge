@@ -18,14 +18,14 @@ return new class extends Migration
             $table->integer('value');
             $table->string('type', 20);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('check_id')->nullable();
+            $table->unsignedBigInteger('bank_check_id')->nullable();
             $table->unsignedBigInteger('purchase_id')->nullable();
             $table->timestamps();
         });
 
         Schema::table('transactions', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('check_id')->references('id')->on('bank_checks');
+            $table->foreign('bank_check_id')->references('id')->on('bank_checks');
             $table->foreign('purchase_id')->references('id')->on('purchases');
         });
     }
