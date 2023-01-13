@@ -14,11 +14,9 @@
 import {
   computed,
   defineComponent,
-  onMounted,
   reactive,
   WritableComputedRef,
 } from 'vue';
-import domainService from 'src/service/domainService';
 import { useTranslate } from 'src/composable/translate';
 
 export default defineComponent({
@@ -34,11 +32,6 @@ export default defineComponent({
     const { translate } = useTranslate();
     const state = reactive({
       listDomain: [],
-    });
-
-    onMounted(async () => {
-      const { data } = await domainService.requestAllDomain();
-      state.listDomain = data.data;
     });
 
     const model: WritableComputedRef<number> = computed({

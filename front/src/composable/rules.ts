@@ -39,8 +39,8 @@ export function useRules() {
       sidebar_icon: _DEFAULT('Sidebar icone'),
       sidebar_text: _DEFAULT('Sidebar texto'),
       background: _DEFAULT('Plano de fundo'),
-      description: _DEFAULT(translate.value.description), // todo: BNBZ
-      purchase_date: _DEFAULT(translate.value.purchase_date), // todo: BNBZ
+      description: _DEFAULT(translate.value.description),
+      purchase_date: _DEFAULT(translate.value.purchase_date),
       user_limit: _DEFAULT(translate.value.user_limit),
       company_name: _DEFAULT(translate.value.company_name),
     };
