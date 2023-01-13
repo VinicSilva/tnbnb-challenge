@@ -1,0 +1,12 @@
+@mixin scroll($width) {
+  ::-webkit-scrollbar {
+    width: $width;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(212, 209, 209, 0.527);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(159, 159, 161);
+  }
+}

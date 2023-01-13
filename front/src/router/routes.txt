@@ -1,0 +1,90 @@
+import { RouteRecordRaw } from 'vue-router';
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/signin',
+    name: 'signin',
+    component: () => import('src/pages/signin/SigninPage.vue'),
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: () => import('src/pages/signup/SignupPage.vue'),
+  },
+  {
+    path: '/',
+    meta: { auth: true },
+    component: () => import('src/layouts/Layout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'dashboard',
+        meta: { auth: true },
+        component: () => import('src/pages/dashboard/DashboardPage.vue'),
+      },
+      {
+        path: 'domain',
+        name: 'domain',
+        meta: { auth: true },
+        component: () => import('src/pages/domain/DomainPage.vue'),
+      },
+      {
+        path: 'companies',
+        name: 'companies',
+        meta: { auth: true },
+        component: () => import('src/pages/companies/CompaniesPage.vue'),
+      },
+      {
+        path: 'analyze',
+        name: 'analyze',
+        meta: { auth: true },
+        component: () => import('src/pages/analyze/AnalyzePage.vue'),
+      },
+      {
+        path: 'partners',
+        name: 'partners',
+        meta: { auth: true },
+        component: () => import('src/pages/partners/PartnersPage.vue'),
+      },
+      {
+        path: 'whitelabels',
+        name: 'whitelabels',
+        meta: { auth: true },
+        component: () => import('src/pages/whitelabels/WhitelabelsPage.vue'),
+      },
+      {
+        path: 'user',
+        name: 'user',
+        meta: { auth: true },
+        component: () => import('src/pages/user/UserPage.vue'),
+      },
+      {
+        path: 'department',
+        name: 'department',
+        meta: { auth: true },
+        component: () => import('src/pages/department/DepartmentPage.vue'),
+      },
+      {
+        path: 'playlists',
+        name: 'playlists',
+        meta: { auth: true },
+        component: () => import('src/pages/playlists/PlaylistPage.vue'),
+      },
+      {
+        path: 'groups',
+        name: 'groups',
+        meta: { auth: true },
+        component: () => import('src/pages/groups/GroupPage.vue'),
+      },
+    ],
+  },
+
+  // Always leave this as last one,
+  // but you can also remove it
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue'),
+  },
+];
+
+export default routes;

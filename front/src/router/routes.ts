@@ -1,34 +1,50 @@
 import { RouteRecordRaw } from 'vue-router';
 
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', name: 'balance', component: () => import('src/pages/customer/Balance.vue') },
-      { path: '/expenses', name: 'expenses', component: () => import('src/pages/customer/Expenses.vue') },
-      { path: '/checks', name: 'checks', component: () => import('src/pages/customer/Checks.vue') },
-      { path: '/logout', name: 'logout', component: () => import('src/pages/customer/Logout.vue') },
-    ],
+import routeAdmin from './routes/admin';
+import routeCustomer from './routes/customer';
+import { useMenu } from 'src/composable/menu';
+const { listRoutesAllowed} = useMenu();
 
-  },
-  {
-    path: '/signin',
-    name: 'signin',
-    component: () => import('src/layouts/SignIn.vue'),
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: () => import('layouts/SignUp.vue'),
-  },
+const confiRoutes = (type: string | null = null) => {
+  switch (type) {
+    case 'admin':
+      return routeAdmin;
+    case 'customer':
+      return routeCustomer;
+    default:
+      return [];
+  }
+};
 
-  // Always leave this as last one,
-  // but you can also remove it
-  {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
-  },
-];
+export function routes(type: string | null = null) {
+  const pageAll = confiRoutes(type);
+  
+  const listPagesAllowed = pageAll.filter((page: any) => {
+    return listRoutesAllowed.value.includes(page.name);
+  });
 
-export default routes;
+  const routesDefault: RouteRecordRaw[] = [
+    {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('src/pages/signin/SigninPage.vue'),
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('src/pages/signup/SignupPage.vue'),
+    },
+    {
+      path: '/',
+      meta: { auth: true },
+      component: () => import('src/layouts/Layout.vue'),
+      children: listPagesAllowed,
+    },
+    {
+      path: '/:catchAll(.*)*',
+      component: () => import('pages/ErrorNotFound.vue'),
+    },
+  ];
+
+  return routesDefault;
+}

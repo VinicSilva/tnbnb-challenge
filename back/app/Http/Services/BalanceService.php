@@ -40,6 +40,14 @@ class BalanceService {
         try {
             DB::beginTransaction();
             Balance::where('user_id', $userId)->update(['income_value' => $incomeValue]);
+            $findBalance = Balance::where('user_id', $userId)->first();
+            if (!$findBalance) {
+                return response()->json([
+                    'message' => 'balance_not_found'
+                ], 404);
+            }
+            $incomeValue = $incomeValue + $findBalance->income_value; 
+            $findBalance->update(['income_value' => $incomeValue]);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -50,7 +58,14 @@ class BalanceService {
     public function changeExpenseValue(int $userId, int $expenseValue) {
         try {
             DB::beginTransaction();
-            Balance::where('user_id', $userId)->update(['expense_value' => $expenseValue]);
+            $findBalance = Balance::where('user_id', $userId)->first();
+            if (!$findBalance) {
+                return response()->json([
+                    'message' => 'balance_not_found'
+                ], 404);
+            }
+            $expenseValue = $expenseValue + $findBalance->expense_value; 
+            $findBalance->update(['expense_value' => $expenseValue]);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

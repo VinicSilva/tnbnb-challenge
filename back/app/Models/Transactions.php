@@ -23,14 +23,14 @@ class Transactions extends Model
     protected $table = 'transactions';
 
     public function purchase() {
-        return $this->hasOne(Purchases::class, 'id');
+        return $this->hasOne(Purchases::class, 'id', 'purchase_id');
     }
 
     public function user() {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function check() {
-        return $this->hasOne(Checks::class, 'id');
+        return $this->hasOne(Checks::class,'id', 'check_id');
     }
 }

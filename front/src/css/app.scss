@@ -1,1 +1,73 @@
+@import './components/scroll';
+@import './components/table';
+
 // app global css in SCSS form
+body {
+  @include scroll(4px);
+}
+.q-page-container {
+  > .q-page {
+    padding: 12px 20px 20px 20px;
+    .q-breadcrumbs {
+      color: #4c4c4c;
+      margin-bottom: 15px;
+      align-items: center;
+      .q-breadcrumbs__el:first-child {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.q-field {
+  .q-field__bottom {
+    padding: 4px 0px 0 $i;
+  }
+}
+
+fieldset {
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  legend {
+    padding: 2px 6px;
+    color: #4c4c4c;
+    font-weight: 500;
+  }
+}
+
+.q-table__bottom {
+  padding: unset;
+}
+
+
+#dialog-confirm{
+  background: #fff;
+  width: 300px;
+  border: 1px solid #e4e4e4;
+  display: flex;
+  border-radius: 4px;
+  .q-notification__content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 35px 0px 0px 0px;
+    color: #4c4c4c;
+    .q-icon{
+      font-size: 60px;
+      margin-right: unset;
+      color: #4c4c4c;
+    }
+  }
+  .q-notification__message{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+  }
+  .q-notification__actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 20px 10px;
+  }
+}

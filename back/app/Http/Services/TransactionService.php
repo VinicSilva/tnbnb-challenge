@@ -12,7 +12,7 @@ class TransactionService {
     public function getByUser(int $userId = null) {
         try {
             $transactionUserId = $userId ?? auth('api')->user()->id;
-            $transactions = Transactions::with('user', 'purchase', 'check')->where('user_id', $transactionUserId)->paginate();
+            $transactions = Transactions::with('user', 'purchase', 'check')->where('user_id', $transactionUserId)->orderBy('created_at', 'desc')->paginate();
             return $transactions;
         } catch (Exception $e) {
             Log::error($e->getMessage());

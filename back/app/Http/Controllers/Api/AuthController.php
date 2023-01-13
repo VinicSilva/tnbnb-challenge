@@ -33,7 +33,7 @@ class AuthController extends Controller
             ], 422);
         }
         if (! $token = auth('api')->attempt($validator->validated())) {
-            return response()->json(['error' => 'unauthorized'], 401);
+            return response()->json(['message' => 'unauthorized'], 401);
         }
         return $this->createNewToken($token);
     }

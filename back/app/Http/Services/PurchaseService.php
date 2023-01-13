@@ -12,7 +12,7 @@ class PurchaseService {
     public function getByUser(int $userId = null) {
         try {
             $purchaseUserId = $userId ?? auth('api')->user()->id;
-            $purchases = Purchases::with('user')->where('user_id', $purchaseUserId)->paginate();
+            $purchases = Purchases::with('user')->where('user_id', $purchaseUserId)->orderBy('purchase_date', 'desc')->paginate();
             return $purchases;
         } catch (Exception $e) {
             Log::error($e->getMessage());

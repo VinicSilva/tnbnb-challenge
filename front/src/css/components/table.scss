@@ -1,0 +1,34 @@
+.bi-table {
+  border: 1px solid #e3e3e3fa;
+  .q-table__bottom {
+    border-top: 1px solid #e3e3e3fa;
+  }
+  thead {
+    th {
+      &:first-child {
+        > .q-checkbox {
+          .q-checkbox__inner {
+            width: 0.6em $i;
+            min-width: 0.6em $i;
+            height: 0.6em $i;
+            height: 0.6em $i;
+          }
+        }
+      }
+    }
+  }
+  tbody {
+    td {
+      height: 40px $i;
+      &:first-child {
+        > .q-checkbox {
+          .q-checkbox__inner {
+            width: 0.7em $i;
+            min-width: 0.7em $i;
+            height: 0.7em $i;
+          }
+        }
+      }
+    }
+  }
+}

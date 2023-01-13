@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  tntbnb-front:
+    container_name: tntbnb-front
+    build:
+      context: .
+      target: 'develop-stage'
+    ports:
+      - '80:80'
+    volumes:
+      - '.:/app'
+    command: /bin/sh -c "npm install && quasar dev"

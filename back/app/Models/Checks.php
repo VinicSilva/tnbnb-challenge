@@ -20,7 +20,7 @@ class Checks extends Model
     protected $table = 'checks';
 
     public function user() {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     const PENDING = 'pending';

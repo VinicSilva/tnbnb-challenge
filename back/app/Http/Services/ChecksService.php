@@ -15,7 +15,7 @@ class ChecksService {
             if ($userId) {
                 $checks = $checks->where('user_id', $userId);
             }
-            return $checks->paginate();
+            return $checks->orderBy('created_at', 'desc')->paginate();
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return [];
