@@ -56,6 +56,8 @@ docker-compose up -d
 
 # Credentials to sign in of Administrator:
 
+Link of the system: [https://bankbnb.scorpionvnc.tk](https://bankbnb.scorpionvnc.tk)
+
 ```bash
 email: admin@bnb.com
 password: 123456
