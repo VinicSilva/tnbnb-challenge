@@ -6,7 +6,7 @@ services:
       context: .
       target: 'develop-stage'
     ports:
-      - '80:80'
+      - '83:83'
     volumes:
       - '.:/app'
     command: /bin/sh -c "npm install && quasar dev"
