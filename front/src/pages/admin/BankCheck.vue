@@ -5,7 +5,7 @@
     </div>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-12">
-        <bank-table
+        <pi-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :columns="columns"
           :rows="data"
@@ -36,7 +36,7 @@
             </q-td>
           </template>
           <template v-slot:no-data>
-            <bank-no-data />
+            <pi-no-data />
           </template>
           <template v-slot:bottom>
             <bank-pagination
@@ -45,7 +45,7 @@
               @request="requestPagination"
             />
           </template>
-        </bank-table>
+        </pi-table>
       </div>
     </div>
   </q-page>

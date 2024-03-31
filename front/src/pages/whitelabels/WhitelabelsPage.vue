@@ -5,7 +5,7 @@
         <pi-breadcrumbs :breadcrumbs="listBreadcrumbs" />
       </div>
       <div class="col-12">
-        <bank-table
+        <pi-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :columns="[]"
           :rows="data"
@@ -15,7 +15,7 @@
           :custom-slot="{ 'body-cell': ['actions'] }"
         >
           <template v-slot:top>
-            <bank-search
+            <pi-search
               style="top: 10px"
               v-model="search"
               hidden-remove
@@ -27,7 +27,7 @@
               <template #title>
                 <b>{{ translate.themes }}</b>
               </template>
-            </bank-search>
+            </pi-search>
           </template>
           <template v-slot:item="{ props }">
             <div class="col-md-3 col-xs-12 col-sm-4">
@@ -53,7 +53,7 @@
             </div>
           </template>
           <template v-slot:no-data>
-            <bank-no-data />
+            <pi-no-data />
           </template>
           <template v-slot:bottom>
             <bank-pagination
@@ -61,7 +61,7 @@
               :pagination="pagination"
             />
           </template>
-        </bank-table>
+        </pi-table>
       </div>
     </div>
     <modal-add-whitelabel />

@@ -1,5 +1,5 @@
 <template>
-  <div class="row full-width items-center justify-between bank-search">
+  <div class="row full-width items-center justify-between pi-search">
     <div class="col">
       <div class="text-h6 title ellipsis">
         <slot name="title"></slot>
@@ -72,7 +72,7 @@ import { useTranslate } from 'src/composable/translate';
 import { defineComponent, computed } from 'vue';
 
 export default defineComponent({
-  name: 'BankSearch',
+  name: 'PiSearch',
   emits: ['update:modelValue', 'search', 'remove', 'edit','add'],
   props: {
     modelValue: {
@@ -116,7 +116,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.bank-search {
+.pi-search {
   height: 40 px;
   .title {
     color: #4c4c4c;
@@ -132,7 +132,7 @@ export default defineComponent({
 </style>
 
 <style lang="scss">
-.bank-search {
+.pi-search {
   .input-search {
     &.q-field--dense .q-field__control {
       border-radius: 40px;

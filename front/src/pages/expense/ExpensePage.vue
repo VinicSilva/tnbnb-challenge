@@ -2,14 +2,14 @@
   <q-page>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-12">
-        <bank-table
+        <pi-table
           card-container-class="q-pa-md q-col-gutter-x-md q-col-gutter-y-sm"
           :grid="true"
           :rows="dataTableUsers"
           selection="none"
         >
           <template v-slot:top>
-            <bank-search
+            <pi-search
               hidden-remove
               @add="openModal"
               style="top: 10px"
@@ -20,7 +20,7 @@
               <template #title>
                 <b>{{ translate.users }}</b>
               </template>
-            </bank-search>
+            </pi-search>
           </template>
           <template v-slot:item="{ props }">
             <div class="col-md-3 col-xs-12 col-sm-6">
@@ -71,7 +71,7 @@
               </q-card>
             </div>
           </template>
-        </bank-table>
+        </pi-table>
       </div>
     </div>
     <modal-add-edit-user :user="propUser" />
@@ -119,7 +119,7 @@ export default defineComponent({
       return storeExpense.pagination;
     });
 
-    const requestPagination = async (page: number) => {
+    const requestPagination = async (_page: any) => {
       await storeExpense.REQUEST_GET_USERS({});
     };
 

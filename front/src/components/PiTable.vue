@@ -2,7 +2,7 @@
   <q-table
     hide-pagination
     :pagination="{ rowsPerPage: 10 }"
-    class="bank-table no-shadow"
+    class="pi-table no-shadow"
     :selection="selection"
     v-model:selected="modelSelected"
     v-bind="$attrs"
@@ -38,7 +38,7 @@
 import { defineComponent, computed, WritableComputedRef } from 'vue';
 
 export default defineComponent({
-  name: 'BankTable',
+  name: 'PiTable',
   emits: ['update:selected'],
   props: {
     selection: {
@@ -98,7 +98,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.bank-table {
+.pi-table {
   .q-table__bottom {
     min-height: 35px;
   }
