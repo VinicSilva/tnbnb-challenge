@@ -8,7 +8,7 @@
               <div class="row q-px-lg">
                 <div class="col-12 q-mb-md">
                   <div class="flex justify-center">
-                    <bank-logo v-theme-logo />
+                    <pi-logo v-theme-logo />
                   </div>
                 </div>
                 <div class="col-12">

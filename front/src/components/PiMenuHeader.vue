@@ -3,7 +3,7 @@
     <q-toolbar class="no-padding">
       <q-toolbar-title>
         <div class="row menu-title items-center">
-          <bank-logo with-right v-theme-logo />
+          <pi-logo with-right v-theme-logo />
           <q-btn
             class="btn-toggle no-border-radius"
             dense
@@ -14,7 +14,7 @@
         </div>
       </q-toolbar-title>
       <div class="row items-center">
-        <bank-dropdown-language class="mobile-hide" />
+        <pi-dropdown-language class="mobile-hide" />
         <q-btn
           class="q-mr-sm mobile-hide"
           flat

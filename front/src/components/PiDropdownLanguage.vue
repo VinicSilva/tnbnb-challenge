@@ -7,7 +7,7 @@
     :dropdown-icon="undefined"
     content-class="no-border-radius no-shadow"
     content-style="border:1px solid #e4e4e4"
-    class="q-mr-sm bank-language no-border-radius"
+    class="q-mr-sm pi-language no-border-radius"
   >
     <template v-slot:label>
       <div>
@@ -38,7 +38,7 @@ import { defineComponent, computed, reactive, toRefs, onMounted } from 'vue';
 import { useTranslate } from 'src/composable/translate';
 
 export default defineComponent({
-  name: 'BankSelectLanguage',
+  name: 'PiSelectLanguage',
   setup() {
     const state = reactive({
       lang: '',
@@ -74,7 +74,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.bank-language {
+.pi-language {
   height: 55px;
   .q-btn-dropdown__arrow {
     margin-left: 0 $i;
