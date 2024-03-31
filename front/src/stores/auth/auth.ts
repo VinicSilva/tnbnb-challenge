@@ -1,19 +1,17 @@
-import { iStateAuth } from './model';
-import { iAuth } from 'src/model/authModel';
 import { defineStore } from 'pinia';
 import { $http } from 'src/boot/axios';
 import { useAuth } from 'src/composable/auth';
 
 const { setUserCache, logout } = useAuth();
 export const useAuthStore = defineStore('auth', {
-  state: (): iStateAuth => ({
+  state: (): any => ({
     erro: false,
     error_status: '',
     loading: false,
   }),
   getters: {},
   actions: {
-    async AUTH_REQUEST(value: iAuth) {
+    async AUTH_REQUEST(value: any) {
       this.loading = true;
       await $http
         .post('login', value)

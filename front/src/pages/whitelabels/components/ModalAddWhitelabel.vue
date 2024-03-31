@@ -1,5 +1,5 @@
 <template>
-  <bank-modal
+  <pi-modal
     v-model="model"
     :modal-content="{ padding: 0 }"
     width="800px"
@@ -57,9 +57,9 @@
       </div>
     </template>
     <template v-slot:actions>
-      <bank-modal-footer @save="handleWhitelabel" />
+      <pi-modal-footer @save="handleWhitelabel" />
     </template>
-  </bank-modal>
+  </pi-modal>
 </template>
 <script lang="ts">
 import { useWhitelabelStore } from 'src/stores/whitelabel/whitelabel';

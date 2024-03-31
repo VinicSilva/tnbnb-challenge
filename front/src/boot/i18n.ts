@@ -22,7 +22,7 @@ declare module 'vue-i18n' {
 }
 
 
-const lang: string = LocalStorage.getItem('bnb:lang') ?? 'pt-BR';
+const lang: string = LocalStorage.getItem('pi:lang') ?? 'pt-BR';
 
 export const i18n = createI18n({
   locale: lang,

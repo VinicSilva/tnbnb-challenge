@@ -83,7 +83,7 @@
           <q-badge v-theme-modal class="q-pa-xs"> Atual do sistema </q-badge>
         </legend>
         <q-card>
-          <bank-menu :up="menus"></bank-menu>
+          <pi-menu :up="menus"></pi-menu>
         </q-card>
       </fieldset>
     </div>

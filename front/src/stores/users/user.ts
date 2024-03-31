@@ -3,12 +3,11 @@ import { useNotification } from 'src/composable/notification';
 import { configPagination } from 'src/utils/index';
 import { defineStore } from 'pinia';
 import usersService from 'src/service/usersService';
-import { iSearchUser, iStateUser } from 'src/model/userModel';
 const { requestAllUsers, requestSearchUsers, requestRegisterUser } = usersService;
 const { notification } = useNotification();
 const { translate } = useTranslate();
 export const useUsersStore = defineStore('users', {
-  state: (): iStateUser => ({
+  state: (): any => ({
     openModalUser: false,
     loadingTable: false,
     loading: false,
@@ -20,7 +19,7 @@ export const useUsersStore = defineStore('users', {
     OPEN_MODAL_USER(value: boolean) {
       this.openModalUser = value;
     },
-    async REQUEST_GET_ALL_USERS(params: iSearchUser = {}) {
+    async REQUEST_GET_ALL_USERS(params: any = {}) {
       this.loadingTable = true;
       await requestAllUsers(params)
         .then(({ data }) => {
@@ -31,7 +30,7 @@ export const useUsersStore = defineStore('users', {
           this.loadingTable = false;
         });
     },
-    async REQUEST_SEARCH_USER(params: iSearchUser = {}) {
+    async REQUEST_SEARCH_USER(params: any = {}) {
       this.loadingTable = true;
       await requestSearchUsers(params)
         .then(({ data }) => {

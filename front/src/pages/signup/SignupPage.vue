@@ -1,5 +1,5 @@
 <template>
-  <bank-main>
+  <pi-main>
     <q-page v-theme-login-background>
       <div class="row items-center justify-center absolute-full full-height">
         <q-card class="card-signup" v-theme-card-login>
@@ -29,20 +29,6 @@
                   <q-input
                     outlined
                     dense
-                    :rules="rules.username"
-                    type="text"
-                    v-model="send.username"
-                    :label="translate.username"
-                  >
-                    <template v-slot:prepend>
-                      <q-icon size="14px" name="mdi-account-star" />
-                    </template>
-                  </q-input>
-                </div>
-                <div class="col-12">
-                  <q-input
-                    outlined
-                    dense
                     :rules="rules.email"
                     type="text"
                     v-model="send.email"
@@ -53,7 +39,33 @@
                     </template>
                   </q-input>
                 </div>
-
+                <div class="col-12">
+                  <q-input
+                    outlined
+                    dense
+                    :rules="rules.birth_date"
+                    type="date"
+                    v-model="send.birth_date"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon size="14px" name="mdi-email" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-12">
+                  <q-input
+                    outlined
+                    dense
+                    :rules="rules.cpf"
+                    type="text"
+                    v-model="send.cpf"
+                    :label="translate.cpf"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon size="14px" name="mdi-email" />
+                    </template>
+                  </q-input>
+                </div>
                 <div class="col-12">
                   <q-input
                     outlined
@@ -130,7 +142,7 @@
         </q-card>
       </div>
     </q-page>
-  </bank-main>
+  </pi-main>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch, computed } from 'vue';
@@ -150,9 +162,10 @@ export default defineComponent({
       inputText: false,
       send: {
         name: '',
-        username: '',
         email: '',
-        type: 'customer',
+        birth_date: '',
+        cpf: '',
+        type: 'admin',
         password: '',
         password_confirmation: '',
         language: getLanguage(),

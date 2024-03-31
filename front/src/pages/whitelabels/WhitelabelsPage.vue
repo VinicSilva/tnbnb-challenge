@@ -2,7 +2,7 @@
   <q-page>
     <div class="row">
       <div class="col-12">
-        <bank-breadcrumbs :breadcrumbs="listBreadcrumbs" />
+        <pi-breadcrumbs :breadcrumbs="listBreadcrumbs" />
       </div>
       <div class="col-12">
         <bank-table

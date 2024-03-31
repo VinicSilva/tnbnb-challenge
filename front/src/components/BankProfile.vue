@@ -13,7 +13,7 @@
         <q-avatar color="blue" size="30px">
           <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="" />
         </q-avatar>
-        <div class="name q-ml-sm">{{ user.username }}</div>
+        <div class="name q-ml-sm">{{ user.name }}</div>
       </div>
     </template>
     <div class="row items-center no-wrap q-pa-sm q-col-gutter-x-sm">
@@ -23,7 +23,7 @@
         </q-avatar>
       </div>
       <div class="col-7 column">
-        <b class="full-width ellipsis">{{ user.username }}</b>
+        <b class="full-width ellipsis">{{ user.name }}</b>
         <small class="ellipsis" style="max-width: 140px">
           {{ user.email }}
         </small>

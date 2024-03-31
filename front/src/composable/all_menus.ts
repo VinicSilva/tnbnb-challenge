@@ -7,33 +7,12 @@ export function useListAllMenu() {
   return {
     up: computed(() => {
       return {
-        balance: {
-          text: translate.value.balance,
-          icon: 'fa-solid fa-balance-scale',
+        admin_users: {
+          text: translate.value.users,
+          icon: 'fa-solid fa-users',
           to: '/',
           active: false,
-          routename: 'balance',
-        },
-        expenses: {
-          text: translate.value.expense,
-          icon: 'mdi-arrow-bottom-left',
-          to: '/expenses',
-          active: false,
-          routename: 'expenses',
-        },
-        bank_checks: {
-          text: translate.value.bank_checks,
-          icon: 'mdi-credit-card-scan',
-          to: '/bank_checks',
-          active: false,
-          routename: 'bank_checks',
-        },
-        admin_bank_checks: {
-          text: translate.value.admin_bank_checks,
-          icon: 'fa-solid fa-bank',
-          to: '/',
-          active: false,
-          routename: 'admin_bank_checks',
+          routename: 'admin_users',
         },
       };
     }),
@@ -52,14 +31,8 @@ export function useMenuByUser() {
   const { up } = useListAllMenu();
   const list = computed(() => {
     return {
-      admin: [
-        up.value.admin_bank_checks,
-      ],
-      customer: [
-        up.value.balance,
-        up.value.expenses,
-        up.value.bank_checks,
-      ],
+      admin: [up.value.admin_users],
+      customer: [],
     };
   });
   return list.value;

@@ -7,6 +7,6 @@ export default {
     return await $http.get('auth/users/search', { params });
   },
   async requestRegisterUser(params = {}) {
-    return await $http.post('register', { ...params });
+    return await $http.post('/register/admin', { ...params });
   },
 };

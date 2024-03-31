@@ -32,7 +32,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'BankMenuHeader',
+  name: 'PiMenuHeader',
 });
 </script>
 

@@ -73,7 +73,7 @@ interface iMenus {
 }
 
 export default defineComponent({
-  name: 'BankMenu',
+  name: 'PiMenu',
   props: {
     up: {
       type: Array as () => PropType<iMenus>,

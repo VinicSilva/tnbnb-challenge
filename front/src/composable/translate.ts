@@ -29,6 +29,8 @@ export function useTranslate() {
       department: t('department'),
       playlist: t('playlist'),
       register_account: t('register_account'),
+      birth_date: t('birth_date'),
+      cpf: t('cpf'),
       name: t('name'),
       column: t('column'),
       value: t('value'),
@@ -41,6 +43,7 @@ export function useTranslate() {
       add_bank_check: t('add_bank_check'),
       purchase_date: t('purchase_date'),
       register_purchase: t('register_purchase'),
+      register_user: t('register_user'),
       insufficient_balance:  t('insufficient_balance'),
       description: t('description'),
       expense: t('expense'),
@@ -117,7 +120,7 @@ export function useTranslate() {
 
   const changeLanguage = (lang: any) => {
     locale.value = lang;
-    LocalStorage.set('bnb:lang', lang);
+    LocalStorage.set('pi:lang', lang);
   };
 
   const getLocale = () => {

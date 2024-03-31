@@ -1,6 +1,6 @@
 <template>
-  <bank-main>
-    <bank-menu-header @toggle="toggleSidebar" />
+  <pi-main>
+    <pi-menu-header @toggle="toggleSidebar" />
     <q-drawer
       behavior="desktop"
       v-theme-sidebar
@@ -11,11 +11,11 @@
       :width="250"
       :mini="mini"
     >
-      <bank-menu :mini="mini" v-bind="menu" />
+      <pi-menu :mini="mini" v-bind="menu" />
     </q-drawer>
 
     <router-view />
-  </bank-main>
+  </pi-main>
 </template>
 
 <script lang="ts">

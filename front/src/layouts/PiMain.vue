@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'BankMain',
+  name: 'PiMain',
   props: {
     layout: {
       type: String,

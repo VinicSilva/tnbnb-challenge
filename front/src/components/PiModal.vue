@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-bind="$attrs" :persistent="true" v-model="model">
-    <q-card class="bank-modal" :style="{ ...modalStyle, width }">
+    <q-card class="pi-modal" :style="{ ...modalStyle, width }">
       <template v-if="loading">
         <div
           class="row full-width loading-color full-height absolute justify-center items-center"
@@ -36,7 +36,7 @@
 import { defineComponent, computed } from 'vue';
 
 export default defineComponent({
-  name: 'BankModal',
+  name: 'PiModal',
   props: {
     hiddenTitle: {
       type: Boolean,
@@ -99,7 +99,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.bank-modal {
+.pi-modal {
   .content {
     overflow-y: auto;
   }

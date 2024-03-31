@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="row">
-      <bank-breadcrumbs :breadcrumbs="listBreadcrumbs" />
+      <pi-breadcrumbs :breadcrumbs="listBreadcrumbs" />
     </div>
     <div class="row q-col-gutter-x-md q-col-gutter-y-md">
       <div class="col-12">

@@ -3,9 +3,9 @@ import { RouteRecordRaw } from 'vue-router';
 const routeAdmin: RouteRecordRaw[] = [
   {
     path: '',
-    name: 'admin_bank_checks',
+    name: 'admin_users',
     meta: { auth: true },
-    component: () => import('src/pages/admin/BankCheck.vue'),
+    component: () => import('src/pages/expense/ExpensePage.vue'),
   },
 ];
 

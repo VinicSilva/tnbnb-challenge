@@ -1,5 +1,5 @@
 <template>
-  <bank-main>
+  <pi-main>
     <q-page v-theme-login-background>
       <div class="row items-center justify-center absolute-full full-height">
         <q-card class="card-signin" v-theme-card-login>
@@ -88,7 +88,7 @@
         </q-card>
       </div>
     </q-page>
-  </bank-main>
+  </pi-main>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch, computed } from 'vue';

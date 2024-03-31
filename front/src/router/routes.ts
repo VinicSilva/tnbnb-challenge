@@ -1,7 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 
 import routeAdmin from './routes/admin';
-import routeCustomer from './routes/customer';
 import { useMenu } from 'src/composable/menu';
 const { listRoutesAllowed} = useMenu();
 
@@ -10,7 +9,7 @@ const confiRoutes = (type: string | null = null) => {
     case 'admin':
       return routeAdmin;
     case 'customer':
-      return routeCustomer;
+      return [];
     default:
       return [];
   }

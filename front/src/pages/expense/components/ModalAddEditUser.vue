@@ -1,8 +1,5 @@
 <template>
-  <bank-modal
-    v-model="openModal"
-    :loading="loading"
-  >
+  <pi-modal v-model="openModal" :loading="loading">
     <template v-slot:title>
       <q-icon :name="modalTitle.icon" color="white" size="25px" />
       <b class="text-white q-ml-sm"> {{ modalTitle.text }} </b>
@@ -14,13 +11,13 @@
             <q-input
               outlined
               dense
-              hide-bottom-space
-              :rules="rules.description"
-              :label="translate.description"
-              v-model="send.description"
+              :rules="rules.name"
+              type="text"
+              v-model="send.name"
+              :label="translate.name"
             >
               <template v-slot:prepend>
-                <q-icon name="mdi-lead-pencil" size="14px"></q-icon>
+                <q-icon size="14px" name="mdi-account" />
               </template>
             </q-input>
           </div>
@@ -28,16 +25,13 @@
             <q-input
               outlined
               dense
-              hide-bottom-space
-              :rules="rules.value"
-              :label="translate.value"
-              v-model="send.value"
-              mask="#.##"
-              fill-mask="0"
-              reverse-fill-mask
+              :rules="rules.email"
+              type="text"
+              v-model="send.email"
+              :label="translate.email"
             >
               <template v-slot:prepend>
-                <q-icon name="mdi-cash-usd" size="14px"></q-icon>
+                <q-icon size="14px" name="mdi-email" />
               </template>
             </q-input>
           </div>
@@ -45,16 +39,26 @@
             <q-input
               outlined
               dense
-              hide-bottom-space
-              :rules="rules.purchase_date"
-              :label="translate.purchase_date"
-              v-model="send.purchase_date"
-              mask="####-##-##"
-              reverse-fill-mask
-              hint="Mask: YYYY-MM-DD"
+              :rules="rules.birth_date"
+              type="date"
+              v-model="send.birth_date"
             >
               <template v-slot:prepend>
-                <q-icon name="mdi-calendar" size="14px"></q-icon>
+                <q-icon size="14px" name="mdi-email" />
+              </template>
+            </q-input>
+          </div>
+          <div class="col-12">
+            <q-input
+              outlined
+              dense
+              :rules="rules.cpf"
+              type="text"
+              v-model="send.cpf"
+              :label="translate.cpf"
+            >
+              <template v-slot:prepend>
+                <q-icon size="14px" name="mdi-email" />
               </template>
             </q-input>
           </div>
@@ -62,43 +66,68 @@
       </q-form>
     </template>
     <template v-slot:actions>
-      <bank-modal-footer
+      <pi-modal-footer
         @save="handleDomain"
         @close="openModal = false"
-      ></bank-modal-footer>
+      ></pi-modal-footer>
     </template>
-  </bank-modal>
+  </pi-modal>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive, toRefs, ref, watch, onMounted } from 'vue';
+import {
+  computed,
+  defineComponent,
+  reactive,
+  toRefs,
+  ref,
+  watch,
+  onMounted,
+} from 'vue';
 import { useTranslate } from 'src/composable/translate';
-import { useBalanceStore } from 'src/stores/balance/balance';
 import { useExpenseStore } from 'src/stores/expenses/expense';
 import { useRules } from 'src/composable/rules';
 import { configModalTitle } from 'src/utils';
 import { useNotification } from 'src/composable/notification';
-
+import { useAuth } from 'src/composable/auth';
 
 export default defineComponent({
-  name: 'ModalAddExpense',
-  setup() {
+  name: 'ModalAddEditUser',
+  props: {
+    user: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  setup(props: any, { emit }) {
+    const { getLanguage } = useAuth();
     const { notification } = useNotification();
     const { translate } = useTranslate();
     const formRef = ref();
     const rules = useRules();
     const storeExpense = useExpenseStore();
-    const storeBalance = useBalanceStore();
     const state = reactive({
       balance: 0,
       send: {
-        description: '',
-        value: '',
-        purchase_date: '',
+        id: null,
+        name: '',
+        email: '',
+        birth_date: '',
+        cpf: '',
+        type: 'customer',
+        language: getLanguage(),
       },
     });
 
-    onMounted(async () => {
-      await storeBalance.REQUEST_GET_BALANCE();
+    watch(() => props.user, (newUser) => {
+      if (newUser) {
+        state.send = { ...newUser };
+      }
+    }, { deep: true });
+
+    onMounted(() => {
+      if (props.user) {
+        state.send = { ...props.user };
+      }
     });
 
     const loading = computed(() => {
@@ -108,7 +137,7 @@ export default defineComponent({
     const modalTitle = computed(() => {
       return configModalTitle(null, {
         edit: 'edit',
-        add: translate.value.register_purchase,
+        add: translate.value.register_user,
       });
     });
 
@@ -138,15 +167,12 @@ export default defineComponent({
 
     const handleDomain = () => {
       formRef.value.validate().then(async (success: boolean) => {
-        let formattedBalancePrice: number = storeBalance.balance.balance / 100
-        if (state.send.value > formattedBalancePrice) {
-          notification.error({
-            caption: translate.value.insufficient_balance
-          });
-          return;
-        }
         if (success) {
-          await storeExpense.REQUEST_ADD_PURCHASE(state.send);
+          if (state.send.id) {
+            await storeExpense.REQUEST_UPDATE_USER(state.send);
+          } else {
+            await storeExpense.REQUEST_ADD_USER(state.send);
+          }
           reset();
         }
       });

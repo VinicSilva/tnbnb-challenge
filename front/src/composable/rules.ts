@@ -23,6 +23,8 @@ export function useRules() {
       language: _DEFAULT(translate.value.language),
       subdomain: _DEFAULT(translate.value.subdomain),
       situation: _DEFAULT(translate.value.situation),
+      birth_date: _DEFAULT(translate.value.birth_date),
+      cpf: _DEFAULT(translate.value.cpf),
       bi: _DEFAULT('Autenticação Power Bank'),
       buttons: _DEFAULT('Botões'),
       rules: _DEFAULT(translate.value.rules),
