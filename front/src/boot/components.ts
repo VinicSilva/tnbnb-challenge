@@ -6,7 +6,7 @@ import PiBreadcrumbs from 'src/components/PiBreadcrumbs.vue';
 import PiTable from 'src/components/PiTable.vue';
 import PiSearch from 'src/components/PiSearch.vue';
 import BankDropdownLanguage from 'src/components/BankDropdownLanguage.vue';
-import BankSelectLanguage from 'src/components/BankSelectLanguage.vue';
+import PiSelectLanguage from 'src/components/PiSelectLanguage.vue';
 import BankPagination from 'src/components/BankPagination.vue';
 import BankProfile from 'src/components/BankProfile.vue';
 import BankLogo from 'src/components/BankLogo.vue';
@@ -15,7 +15,7 @@ import BankDropdownActions from 'src/components/BankDropdownActions.vue';
 import PiModal from 'src/components/PiModal.vue';
 import PiModalFooter from 'src/components/PiModalFooter.vue';
 import PiNoData from 'src/components/PiNoData.vue';
-import BankCountryFlag from 'vue-country-flag-next';
+import PiCountryFlag from 'vue-country-flag-next';
 import { VueDraggableNext } from 'vue-draggable-next';
 
 export default boot(({ app }) => {
@@ -28,8 +28,8 @@ export default boot(({ app }) => {
   app.component('PiSearch', PiSearch);
   app.component('PiNoData', PiNoData);
   app.component('BankDropdownLanguage', BankDropdownLanguage);
-  app.component('BankSelectLanguage', BankSelectLanguage);
-  app.component('BankCountryFlag', BankCountryFlag);
+  app.component('PiSelectLanguage', PiSelectLanguage);
+  app.component('PiCountryFlag', PiCountryFlag);
   app.component('BankPagination', BankPagination);
   app.component('BankProfile', BankProfile);
   app.component('PiModal', PiModal);

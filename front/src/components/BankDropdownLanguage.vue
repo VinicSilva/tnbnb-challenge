@@ -11,7 +11,7 @@
   >
     <template v-slot:label>
       <div>
-        <bank-country-flag :country="countryActive" />
+        <pi-country-flag :country="countryActive" />
       </div>
     </template>
     <q-list dense separator>
@@ -25,7 +25,7 @@
         @click="setLanguages(item.value)"
       >
         <div class="flex items-center">
-          <bank-country-flag :country="item.flag" class="no-margin" />
+          <pi-country-flag :country="item.flag" class="no-margin" />
           <b>{{ item.label }}</b>
         </div>
       </q-item>

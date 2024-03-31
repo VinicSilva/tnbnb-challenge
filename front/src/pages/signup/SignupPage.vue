@@ -111,7 +111,7 @@
                 </q-input>
                 </div>
                 <div class="col-12">
-                  <bank-select-language
+                  <pi-select-language
                     v-model="send.language"
                     :rules="rules.language"
                     class="full-width"
