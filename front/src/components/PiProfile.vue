@@ -47,7 +47,7 @@ import { useAuthStore } from 'src/stores/auth/auth';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'BankProfile',
+  name: 'PiProfile',
   setup() {
     const { getUserLogged } = useAuth();
     const storeAuth = useAuthStore();

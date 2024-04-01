@@ -81,14 +81,14 @@
 <script lang="ts">
 import { defineComponent, computed, toRefs, reactive, onMounted } from 'vue';
 import { useTranslate } from 'src/composable/translate';
-import { useExpenseStore } from 'src/stores/expenses/expense';
+import { useUserStore } from 'src/stores/user/user';
 import ModalAddEditUser from './components/ModalAddEditUser.vue';
 
 export default defineComponent({
-  name: 'Expense',
+  name: 'UserPage',
   components: { ModalAddEditUser },
   setup() {
-    const storeExpense = useExpenseStore();
+    const storeUser = useUserStore();
     const state = reactive({
       search: '',
     });
@@ -100,42 +100,37 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      await storeExpense.REQUEST_GET_USERS();
+      await storeUser.REQUEST_GET_USERS();
     });
 
     const openModal = () => {
-      storeExpense.OPEN_MODAL_EXPENSE(true);
+      storeUser.OPEN_MODAL_USER(true);
     };
 
     const dataTableUsers = computed(() => {
-      return storeExpense.listExpenses;
+      return storeUser.listUsers;
     });
 
     const propUser = computed(() => {
-      return storeExpense.propUser;
+      return storeUser.propUser;
     });
 
     const pagination = computed(() => {
-      return storeExpense.pagination;
+      return storeUser.pagination;
     });
 
-    const requestPagination = async (_page: any) => {
-      await storeExpense.REQUEST_GET_USERS({});
-    };
-
     const deleteUser = async (id: number) => {
-      await storeExpense.REQUEST_DELETE_USER(id);
+      await storeUser.REQUEST_DELETE_USER(id);
     };
 
     const editUser = async (id: number) => {
-      const propUser = storeExpense.listExpenses.find((user) => user.id === id);
-      storeExpense.SET_PROP_USER(propUser);
-      storeExpense.OPEN_MODAL_EXPENSE(true);
+      const propUser = storeUser.listUsers.find((user: any) => user.id === id);
+      storeUser.SET_PROP_USER(propUser);
+      storeUser.OPEN_MODAL_USER(true);
     };
 
     return {
       pagination,
-      requestPagination,
       dataTableUsers,
       translate,
       listBreadcrumbs,

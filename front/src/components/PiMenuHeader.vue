@@ -22,7 +22,7 @@
           @click="$q.fullscreen.toggle()"
           :icon="$q.fullscreen?.isActive ? 'fullscreen_exit' : 'fullscreen'"
         />
-        <bank-profile />
+        <pi-profile />
       </div>
     </q-toolbar>
   </q-header>

@@ -58,7 +58,7 @@ export function useAuth() {
   }
 
   const logout = () => {
-    LocalStorage.remove('bnb:cache');
+    LocalStorage.remove('pi:cache');
     window.location.href = '/signin';
   };
 

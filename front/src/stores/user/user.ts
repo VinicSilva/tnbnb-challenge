@@ -4,27 +4,24 @@ import { defineStore } from 'pinia';
 import userService from 'src/service/userService';
 const { requestGetUsers, requestRegisterUser, requestUpdateUser, requestDeleteUser } = userService;
 const { notification } = useNotification();
-export const useExpenseStore = defineStore('expense', {
+export const useUserStore = defineStore('user', {
   state: (): any => ({
     loadingTable: false,
     loadingModal: false,
-    openModalExpense: false,
+    openModalUser: false,
     propUser: {},
-    listExpenses: [],
+    listUsers: [],
     form: {
-      value: '',
-      description: '',
-      purchase_date: '',
       id: null,
     },
     pagination: configPagination(),
   }),
   getters: {},
   actions: {
-    OPEN_MODAL_EXPENSE(value: boolean) {
-      this.openModalExpense = value;
+    OPEN_MODAL_USER(value: boolean) {
+      this.openModalUser = value;
     },
-    SET_FORM_EXPENSE(form: any = {} as any) {
+    SET_FORM_USER(form: any = {} as any) {
       this.form = {
         ...form,
       };
@@ -38,7 +35,7 @@ export const useExpenseStore = defineStore('expense', {
       this.loadingTable = true;
       await requestGetUsers(params)
         .then(({ data }: any) => {
-          this.listExpenses = data.data;
+          this.listUsers = data.data;
           this.pagination = configPagination({} as any);
         })
         .finally(() => {

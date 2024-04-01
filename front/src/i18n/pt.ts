@@ -23,5 +23,4 @@ export default {
   email: 'E-mail',
   log_in: 'Entrar',
   forgot_password: 'Esqueceu a senha',
-  admin_bank_checks: 'Controle de cheques bancários'
 };

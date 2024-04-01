@@ -84,10 +84,9 @@ import {
   onMounted,
 } from 'vue';
 import { useTranslate } from 'src/composable/translate';
-import { useExpenseStore } from 'src/stores/expenses/expense';
+import { useUserStore } from 'src/stores/user/user';
 import { useRules } from 'src/composable/rules';
 import { configModalTitle } from 'src/utils';
-import { useNotification } from 'src/composable/notification';
 import { useAuth } from 'src/composable/auth';
 
 export default defineComponent({
@@ -100,13 +99,11 @@ export default defineComponent({
   },
   setup(props: any, { emit }) {
     const { getLanguage } = useAuth();
-    const { notification } = useNotification();
     const { translate } = useTranslate();
     const formRef = ref();
     const rules = useRules();
-    const storeExpense = useExpenseStore();
+    const storeUser = useUserStore();
     const state = reactive({
-      balance: 0,
       send: {
         id: null,
         name: '',
@@ -131,7 +128,7 @@ export default defineComponent({
     });
 
     const loading = computed(() => {
-      return storeExpense.loadingModal;
+      return storeUser.loadingModal;
     });
 
     const modalTitle = computed(() => {
@@ -143,18 +140,18 @@ export default defineComponent({
 
     const openModal = computed({
       get() {
-        return storeExpense.openModalExpense;
+        return storeUser.openModalUser;
       },
       set(value: boolean) {
-        storeExpense.OPEN_MODAL_EXPENSE(value);
+        storeUser.OPEN_MODAL_USER(value);
       },
     });
 
     watch(
       () => openModal.value,
       (isOpen) => {
-        let formPurchase: any = { ...storeExpense.$state.form };
-        state.send = formPurchase;
+        let formUser: any = { ...storeUser.$state.form };
+        state.send = formUser;
         !isOpen && reset();
       }
     );
@@ -162,16 +159,16 @@ export default defineComponent({
     const reset = () => {
       formRef.value.reset();
       openModal.value = false;
-      storeExpense.SET_FORM_EXPENSE();
+      storeUser.SET_FORM_USER();
     };
 
     const handleDomain = () => {
       formRef.value.validate().then(async (success: boolean) => {
         if (success) {
           if (state.send.id) {
-            await storeExpense.REQUEST_UPDATE_USER(state.send);
+            await storeUser.REQUEST_UPDATE_USER(state.send);
           } else {
-            await storeExpense.REQUEST_ADD_USER(state.send);
+            await storeUser.REQUEST_ADD_USER(state.send);
           }
           reset();
         }

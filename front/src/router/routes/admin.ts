@@ -5,7 +5,7 @@ const routeAdmin: RouteRecordRaw[] = [
     path: '',
     name: 'admin_users',
     meta: { auth: true },
-    component: () => import('src/pages/expense/ExpensePage.vue'),
+    component: () => import('src/pages/user/UserPage.vue'),
   },
 ];
 
