@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 
 import routeAdmin from './routes/admin';
 import { useMenu } from 'src/composable/menu';
-const { listRoutesAllowed} = useMenu();
+const { listRoutesAllowed } = useMenu();
 
 const confiRoutes = (type: string | null = null) => {
   switch (type) {

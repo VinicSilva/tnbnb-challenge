@@ -35,7 +35,6 @@ export default {
   description: 'Descrição',
   to_view: 'Visualizar',
   search: 'Pesquisar',
-  situation: 'Situação',
   list: 'Lista',
   blocked: 'Bloqueado',
   inactive: 'Inativo',

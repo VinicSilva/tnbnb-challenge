@@ -35,7 +35,6 @@ export default {
   list: 'List',
   to_register: 'Register',
   username: 'Username',
-  situation: 'Situation',
   department: 'Department',
   users: 'User | Users',
   password: 'Password',

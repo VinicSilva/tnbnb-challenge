@@ -21,7 +21,6 @@ export function useRules() {
       username: _DEFAULT(translate.value.username),
       password: _DEFAULT(translate.value.password),
       language: _DEFAULT(translate.value.language),
-      situation: _DEFAULT(translate.value.situation),
       birth_date: _DEFAULT(translate.value.birth_date),
       cpf: _DEFAULT(translate.value.cpf),
       buttons: _DEFAULT('Botões'),

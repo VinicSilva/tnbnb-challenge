@@ -40,7 +40,6 @@ export function useTranslate() {
       register_user: t('register_user'),
       description: t('description'),
       rules: t('rules'),
-      situation: t('situation'),
       language: t('language'),
       administrator: t('administrator'),
       no_data: t('no_data'),

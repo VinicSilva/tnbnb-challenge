@@ -39,7 +39,6 @@ export default {
   department: 'Departamento',
   reports: 'Informes',
   username: 'Nombre de usuario',
-  situation: 'Situación',
   required: '¡Se requiere el {name}',
   invalid: '¡El {name} no es válido!',
   users: 'Usuarios | Usuarios',

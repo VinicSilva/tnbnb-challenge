@@ -2,46 +2,17 @@ import { useTranslate } from 'src/composable/translate';
 import { useNotification } from 'src/composable/notification';
 import { configPagination } from 'src/utils/index';
 import { defineStore } from 'pinia';
-import usersService from 'src/service/usersService';
-const { requestAllUsers, requestSearchUsers, requestRegisterUser } = usersService;
+import adminService from 'src/service/adminService';
+const { requestRegisterAdmin } = adminService;
 const { notification } = useNotification();
 const { translate } = useTranslate();
-export const useUsersStore = defineStore('users', {
+export const useAdminStore = defineStore('admin', {
   state: (): any => ({
-    openModalUser: false,
-    loadingTable: false,
     loading: false,
-    listUsers: [],
     pagination: configPagination(),
   }),
   getters: {},
   actions: {
-    OPEN_MODAL_USER(value: boolean) {
-      this.openModalUser = value;
-    },
-    async REQUEST_GET_ALL_USERS(params: any = {}) {
-      this.loadingTable = true;
-      await requestAllUsers(params)
-        .then(({ data }) => {
-          this.listUsers = data.data;
-          this.pagination = configPagination(data);
-        })
-        .finally(() => {
-          this.loadingTable = false;
-        });
-    },
-    async REQUEST_SEARCH_USER(params: any = {}) {
-      this.loadingTable = true;
-      await requestSearchUsers(params)
-        .then(({ data }) => {
-          this.listUsers = data.data;
-          this.pagination = configPagination(data);
-        })
-        .finally(() => {
-          this.loadingTable = false;
-        });
-    },
-
     async REQUEST_REGISTER_USER(params: any = {}) {
       if (params.password && params.password.length < 6) {
         notification.error({ caption: translate.value.message.invalid_password_size });
@@ -52,7 +23,7 @@ export const useUsersStore = defineStore('users', {
         return;
       }
       this.loading = true;
-      await requestRegisterUser(params)
+      await requestRegisterAdmin(params)
         .then(({ }) => {
           notification.success();
           setTimeout(() => window.location.href = '/signin', 1000)

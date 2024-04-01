@@ -149,14 +149,14 @@ import { defineComponent, reactive, toRefs, watch, computed } from 'vue';
 import { useRules } from 'src/composable/rules';
 import { useTranslate } from 'src/composable/translate';
 import { useAuth } from 'src/composable/auth';
-import { useUsersStore } from 'src/stores/users/user';
+import { useAdminStore } from 'src/stores/admin/admin';
 
 export default defineComponent({
   name: 'Signup',
   setup() {
     const { getLanguage } = useAuth();
     const { translate, changeLanguage } = useTranslate();
-    const storeUser = useUsersStore();
+    const storeAdmin = useAdminStore();
     const rules = useRules();
     const state = reactive({
       inputText: false,
@@ -180,12 +180,12 @@ export default defineComponent({
     );
 
     const loading = computed(() => {
-      return storeUser.loading;
+      return storeAdmin.loading;
     });
 
     const handleSignup = () => {
       changeLanguage(state.send.language);
-      storeUser.REQUEST_REGISTER_USER({ ...state.send });
+      storeAdmin.REQUEST_REGISTER_USER({ ...state.send });
     };
 
     return {
